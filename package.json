@@ -1,0 +1,13 @@
+{
+  "name": "node-cluster-cqrs",
+  "version": "0.0.1",
+  "engines": {
+    "node": "~0.10.24",
+    "npm": "~1.3.14"
+  },
+  "dependencies": {
+    "express": "~3.4.8",
+    "path": "~0.4.9",
+    "cluster": "~0.7.7"
+  }
+}
