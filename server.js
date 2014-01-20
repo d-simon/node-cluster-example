@@ -10,8 +10,9 @@ var master = require('./lib/server/master')(cluster),
     workerBackend = require('./lib/workers/worker-backend')(cluster),
     workerHttp = require('./lib/workers/worker-http')(cluster),
     workerHttp2 = require('./lib/workers/worker-http-admin')(cluster),
-    main = require('./lib/controller/main')(cluster), 
-    routes = require('./lib/routes')(main); // TODO: create a CONF to pass all controllers into routes
+    main = require('./lib/controller/main')(cluster),
+    admin = require('./lib/controller/admin')(cluster),
+    routes = require('./lib/routes')(main, admin); // TODO: create a CONF to pass all controllers into routes
 
 
 var numCPUs = process.env.NODE_CPUS || require('os').cpus().length;
