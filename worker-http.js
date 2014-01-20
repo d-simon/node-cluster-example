@@ -25,8 +25,8 @@ module.exports = function (cluster) {
             port = process.env.PORT || 9007;
 
         server.listen(port, function () {
-            console.log('Worker %d / #%d listening on port %d in %s mode',
-                        cluster.worker.process.pid, cluster.worker.id, port, app.get('env'));
+            console.log('Worker %d HTTP #%d listening on port %d',
+                        cluster.worker.process.pid, cluster.worker.id, port);
         });
 
        
