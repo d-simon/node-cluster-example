@@ -9,6 +9,7 @@ var master = require('./lib/server/master')(cluster),
     workers = require('./lib/server/workers')(),
     workerBackend = require('./lib/workers/worker-backend')(cluster),
     workerHttp = require('./lib/workers/worker-http')(cluster),
+    workerHttp2 = require('./lib/workers/worker-http-admin')(cluster),
     main = require('./lib/controller/main')(cluster), 
     routes = require('./lib/routes')(main); // TODO: create a CONF to pass all controllers into routes
 
@@ -21,12 +22,18 @@ var workerConf = {
     'http': {
             init: workerHttp.start,
             args: [express, http, routes],
-            minProcesses: 2
+            minProcesses: 4
+        },
+    'http-admin': {
+            init: workerHttp2.start,
+            args: [express, http, routes],
+            minProcesses: 1,
+            maxProcesses: 1
         },
     'backend': {
             init: workerBackend.start,
             args: null,
-            minProcesses: 2
+            minProcesses: 3
         }
     };
 
