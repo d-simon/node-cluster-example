@@ -6,15 +6,15 @@ var cluster = require('cluster'),
     http = require('http'),
     path = require('path');
 
-var master = require('./master')(cluster),
-    workers = require('./workers')(),
-    workerBackend = require('./worker-backend')(cluster),
-    workerHttp = require('./worker-http')(cluster),
+var master = require('./lib/server/master')(cluster),
+    workers = require('./lib/server/workers')(),
+    workerBackend = require('./lib/workers/worker-backend')(cluster),
+    workerHttp = require('./lib/workers/worker-http')(cluster),
     main = require('./lib/controller/main')(cluster), 
     routes = require('./lib/routes')(main); // TODO: create a CONF to pass all controllers into routes
 
 
-var numCPUs = require('os').cpus().length;
+var numCPUs = process.env.NODE_CPUS || require('os').cpus().length;
 
 var ENV = process.env.NODE_ENV || 'developement';
 
