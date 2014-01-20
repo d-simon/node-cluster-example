@@ -25,8 +25,7 @@ module.exports = function (cluster) {
             port = process.env.PORT || 9007;
 
         server.listen(port, function () {
-            console.log('Worker %d HTTP #%d listening on port %d',
-                        cluster.worker.process.pid, cluster.worker.id, port);
+            console.log('Worker %d HTTP #%d listening on port %d', cluster.worker.process.pid, cluster.worker.id, port);
         });
 
        
@@ -47,7 +46,7 @@ module.exports = function (cluster) {
     };
 
     worker.stop = function () {
-        console.log('stopping worker')
+        console.log('Worker %d BACK #%d STOPPEDc', cluster.worker.process.pid, cluster.worker.id);
         process.exit(1);
     };
 

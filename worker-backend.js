@@ -6,8 +6,7 @@ module.exports = function (cluster) {
 
     worker.start = function () {
         
-        console.log('Worker %d BACK #%d running',
-            cluster.worker.process.pid, cluster.worker.id);
+        console.log('Worker %d BACK #%d running', cluster.worker.process.pid, cluster.worker.id);
        
         // Error Handling / Logging
         process.on('uncaughtException', function (err) {
@@ -18,7 +17,7 @@ module.exports = function (cluster) {
     };
 
     worker.stop = function () {
-        console.log('stopping worker')
+        console.log('Worker %d BACK #%d STOPPEDc', cluster.worker.process.pid, cluster.worker.id);
         process.exit(1);
     };
 

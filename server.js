@@ -4,18 +4,17 @@
 var cluster = require('cluster'),
     express = require('express'),
     http = require('http'),
-    path = require('path')
+    path = require('path');
 
 var master = require('./master')(cluster),
     workers = require('./workers')(),
     workerBackend = require('./worker-backend')(cluster),
     workerHttp = require('./worker-http')(cluster),
-
     main = require('./lib/controller/main')(cluster), 
-    routes = require('./lib/routes')(main) // TODO: create a CONF to pass all controllers into routes
+    routes = require('./lib/routes')(main); // TODO: create a CONF to pass all controllers into routes
 
 
-var numCPUs = require('os').cpus().length
+var numCPUs = require('os').cpus().length;
 
 var ENV = process.env.NODE_ENV || 'developement';
 
@@ -39,5 +38,5 @@ if (cluster.isMaster) {
 
 } else {
     
-    workers.start(workerConf, numCPUs)
+    workers.start(workerConf, numCPUs);
 }
