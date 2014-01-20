@@ -3,8 +3,7 @@
 // Load all dependencies here for a clear dependency structure
 var cluster = require('cluster'),
     express = require('express'),
-    http = require('http'),
-    path = require('path');
+    http = require('http');
 
 var master = require('./lib/server/master')(cluster),
     workers = require('./lib/server/workers')(),
@@ -21,7 +20,7 @@ var ENV = process.env.NODE_ENV || 'developement';
 var workerConf = {
     'http': {
             init: workerHttp.start,
-            args: [express, http, path, routes],
+            args: [express, http, routes],
             minProcesses: 2
         },
     'backend': {
